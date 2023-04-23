@@ -15,5 +15,5 @@ libraryDependencies ++= Seq(
 lazy val root = (project in file("."))
   .settings(
     name := "lemyrBack",
-    mainClass := Some("main")
+    mainClass := Some("Main")
   )
