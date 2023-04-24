@@ -12,15 +12,12 @@ object Main extends IOApp {
 
   val cors: CORSPolicy = CORS.policy.withAllowOriginAll
     .withAllowCredentials(false)
-
-  val helloyWorldService = new ServiceList[IO]()
-  val helloyWorldRoutes = new RoutesList[IO](helloyWorldService)
   def run(args: List[String]): IO[ExitCode] =
     EmberServerBuilder
       .default[IO]
       .withHost(ipv4"0.0.0.0")
       .withPort(port"5000")
-      .withHttpApp( cors (helloyWorldRoutes.routes.orNotFound) )
+      .withHttpApp( cors (RoutesList[IO].routes.orNotFound) )
       .build
       .use(_ => IO.never)
       .as(ExitCode.Success)

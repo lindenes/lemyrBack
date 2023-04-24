@@ -6,4 +6,7 @@ class ServiceList[F[_]: Sync] {
       "Helloy Epta"
     )
   }
+  def testMethod(): String = {
+      return "Test Working"
+  }
 }
