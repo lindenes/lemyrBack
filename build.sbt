@@ -10,6 +10,9 @@ libraryDependencies ++= Seq(
   "org.http4s" %% "http4s-dsl"          % http4sVersion,
   "ch.qos.logback" % "logback-classic" % "1.4.6",
   "org.slf4j" % "slf4j-api" % "2.0.5",
+  "org.http4s" %% "http4s-circe" % http4sVersion,
+  "io.circe" %% "circe-generic" % "0.14.5",
+  "io.circe" %% "circe-literal" % "0.14.5"
 )
 
 lazy val root = (project in file("."))

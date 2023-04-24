@@ -1,12 +1,10 @@
 package services
+import cats.Applicative
 import cats.effect.Sync
-class ServiceList[F[_]: Sync] {
-  def myMethod(): F[String] = {
-    Sync[F].delay(
-      "Helloy Epta"
-    )
-  }
-  def testMethod(): String = {
-      return "Test Working"
-  }
+import io.circe._
+import io.circe.literal._
+object ServiceList {
+  def testMethod(): String =  "Test Working"
+
+  def registration():Json = json"""{"message": "registration successful"}"""
 }

@@ -3,14 +3,17 @@ import cats.effect.*
 import org.http4s.*
 import org.http4s.dsl.Http4sDsl
 import services.ServiceList
-class RoutesList[F[_]: Async] extends Http4sDsl[F] {
-  object ServiceNameQueryParamMatcher extends QueryParamDecoderMatcher[String]("serviceName")
-
-  val routes: HttpRoutes[F] = HttpRoutes.of[F] {
-    case GET -> Root / "service" :? ServiceNameQueryParamMatcher(serviceName) =>
-      serviceName match{
-        case "test" => Ok(ServiceList[F].myMethod())
-        case _ => Ok(ServiceList[F].testMethod())
-      }
+import org.http4s.circe._
+import io.circe._
+import io.circe.literal._
+import org.http4s.HttpRoutes
+import org.http4s.dsl.Http4sDsl
+import org.http4s.dsl.io._
+object RoutesList {
+  val routes: HttpRoutes[IO] = HttpRoutes.of[IO] {
+    case GET -> Root / "test"  =>
+      Ok(ServiceList.testMethod())
+    case GET -> Root / "registration" =>
+      Ok( ServiceList.registration() )
   }
 }
