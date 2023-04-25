@@ -12,8 +12,8 @@ import org.http4s.dsl.io._
 object RoutesList {
   val routes: HttpRoutes[IO] = HttpRoutes.of[IO] {
     case GET -> Root / "test"  =>
-      Ok(ServiceList.testMethod())
-    case GET -> Root / "registration" =>
-      Ok( ServiceList.registration() )
+      Ok( ServiceList.testMethod() )
+    case req @ POST -> Root / "registration" =>
+      Ok( ServiceList.registration(req) )
   }
 }
