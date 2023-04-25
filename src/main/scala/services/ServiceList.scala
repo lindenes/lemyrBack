@@ -20,13 +20,8 @@ object ServiceList {
   def registration(req: Request[IO]): IO[Json] =
     req.as[User].flatMap { user =>
       val valid = validation.checkValidation(user)
-      if (!valid.passEqual)
         IO.pure(
-          json"""{"status": "Пароли не совпадают" }"""
-        )
-      else
-        IO.pure(
-          json"""{"status": "Регистрация успешна"}"""
+          json"""{"passwordError": ${valid.passwordError} }"""
         )
     }
 }
