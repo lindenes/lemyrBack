@@ -17,6 +17,10 @@ object Main extends IOApp {
     Origin.Host(Uri.Scheme.http, Uri.RegName("localhost"), Some(3000))
   ))
     .withAllowCredentials(false)
+
+  val cors2: CORSPolicy = CORS.policy.withAllowOriginAll
+    .withAllowCredentials(false)
+
   def run(args: List[String]): IO[ExitCode] =
     EmberServerBuilder
       .default[IO]
