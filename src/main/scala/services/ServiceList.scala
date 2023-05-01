@@ -20,8 +20,10 @@ object ServiceList {
   def registration(req: Request[IO]): IO[Json] =
     req.as[User].flatMap { user =>
       val valid = validation.checkValidation(user)
+      val regMessage = validation.doRegistration(user)
         IO.pure(
-          json"""{"passwordError": ${valid.passwordError} }"""
+          json"""{"passwordError": ${valid.passwordError}, "loginError": ${valid.loginError}}""".deepMerge(regMessage)
+
         )
     }
 }

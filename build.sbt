@@ -12,7 +12,9 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-api" % "2.0.5",
   "org.http4s" %% "http4s-circe" % http4sVersion,
   "io.circe" %% "circe-generic" % "0.14.5",
-  "io.circe" %% "circe-literal" % "0.14.5"
+  "io.circe" %% "circe-literal" % "0.14.5",
+  "mysql" % "mysql-connector-java" % "8.0.32"
+
 )
 
 lazy val root = (project in file("."))
